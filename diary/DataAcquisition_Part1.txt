@@ -1,0 +1,19 @@
+Data acquisition (sources and relevance)
+
+Where the data would come from
+-Source: Kaggle dataset "Lending Club Loan Data" by wordsforthewise
+-https://www.kaggle.com/datasets/wordsforthewise/lending-club/data?select=accepted_2007_to_2018Q4.csv.gz
+
+How it would be collected
+-LendingClub collects borrower information during the loan application process, such as income, employment status, and credit history.
+-Loan performance data is collected over the life of the loan through scheduled repayment transactions.
+-Credit-related variables (e.g., FICO score ranges) are sourced from credit bureaus via regulated data-sharing agreements.
+
+Known or expected limitations
+-The model is trained on accepted loans, which introduces sample selection bias. However, since loan outcomes are only observable for 
+approved borrowers, this approach is standard in industry. The model is intended to assess default risk post-approval rather than to
+determine loan eligibility.
+-Selection bias: Only approved loans are included, meaning repayment outcomes for rejected applicants are not observed.
+-Self-reported information: Variables such as income may contain inaccuracies.
+-Limited feature scope: Public data does not include full transaction histories or external economic indicators used by real banks.
+-Missing data 
