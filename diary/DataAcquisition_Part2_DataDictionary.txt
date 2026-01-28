@@ -1,0 +1,41 @@
+Data Acquisition Part 2_DataDictionary
+
+# List variables you plan to use
+## Brief description of what each variable represents and other data dictionary attributes
+
+-Target variable
+ loan_status: Final status of the loan  (commonly: Fully Paid, Charged Off, Default, Late)
+
+-Borrower Demographics & Financial Capacity
+ annual_inc: Borrower’s self-reported annual income     (Numeric)
+ emp_length: Length of borrower’s employment	(Categorical) 
+ home_ownership: Home ownership status  ((Categorical (RENT, OWN, MORTGAGE)))
+ verification_status: Whether income was verified   (Categorical (Verified / Not Verified))
+
+-Credit History & Creditworthiness
+ fico_range_low: Lower bound of borrower’s FICO score range     (Numeric)
+ fico_range_high: Upper bound of borrower’s FICO score range    (Numeric)
+ earliest_cr_line: Date of borrower’s earliest credit line  (Used to derive credit history length)
+ open_acc: Number of open credit lines	(Numeric)
+ total_acc: Total number of credit lines	(Numeric)
+ delinq_2yrs: Number of delinquencies in past 2 years	(Numeric)
+ pub_rec: Number of derogatory public records	(Numeric)
+
+-Debt Burden & Repayment Capacity
+ dti: Debt-to-income ratio	(Key risk indicator)
+ revol_bal: Total revolving credit balance	(Numeric)
+ revol_util: Revolving credit utilization rate (%)	(Numeric, may need cleaning)
+
+-Loan Characteristics (Known at Origination)
+ loan_amnt: Amount of loan funded	(Numeric)
+ term: Loan repayment term	    (Categorical (36 or 60 months))
+ int_rate: Interest rate on the loan	(Numeric)
+ installment: Monthly payment amount	(Derived from loan terms)
+ purpose: Purpose of the loan   (Categorical (e.g., debt consolidation))
+ grade: LendingClub assigned loan grade	    (Ordinal (A–G))
+ sub_grade: More granular loan grade	(Ordinal (e.g., A1–G5))
+
+-Temporal / Control Variables
+ issue_d: Month the loan was issued	(Used for time-based train/test split)
+ addr_state: Borrower’s state	(Optional; may raise fairness concerns)
+ 
