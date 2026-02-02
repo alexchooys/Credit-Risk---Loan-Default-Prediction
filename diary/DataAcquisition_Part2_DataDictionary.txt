@@ -27,6 +27,7 @@ Data Acquisition Part 2_DataDictionary
  revol_util: Revolving credit utilization rate (%)	(Numeric, may need cleaning)
 
 -Loan Characteristics (Known at Origination)
+ loan_id(id): a unique identifier provided by LendingClub 
  loan_amnt: Amount of loan funded	(Numeric)
  term: Loan repayment term	    (Categorical (36 or 60 months))
  int_rate: Interest rate on the loan	(Numeric)

@@ -1,0 +1,71 @@
+Data Acquisition Part 2_DataBaseManagement
+
+What tables need to be in your data and how are they connected? (db diagram)
+Any unstructured data you expect to work with and how it might be handled
+
+
+1. Loan Table (Central Table)
+
+Purpose: Stores loan-specific information and the target variable
+Primary Key: loan_id
+
+Variables included:
+ -loan_id (PK)
+ -loan_status (target variable)
+ -loan_amnt
+ -term
+ -int_rate
+ -installment
+ -purpose
+ -grade
+ -sub_grade
+ -issue_d
+
+2. Borrower Table
+
+Purpose: Stores borrower demographic and financial capacity information
+Primary Key: borrower_id
+Foreign Key: loan_id
+
+Variables included:
+ -borrower_id (PK)
+ -loan_id (FK)
+ -annual_inc
+ -emp_length
+ -home_ownership
+ -verification_status
+ -addr_state
+
+3. Credit History Table
+
+Purpose: Stores borrower creditworthiness indicators at loan origination
+Primary Key: credit_history_id
+Foreign Key: loan_id
+
+Variables included:
+ -credit_history_id (PK)
+ -loan_id (FK)
+ -fico_range_low
+ -fico_range_high
+ -earliest_cr_line
+ -open_acc
+ -total_acc
+ -delinq_2yrs
+ -pub_rec
+
+4. Debt Profile Table
+
+Purpose: Stores borrower debt burden and utilization metrics
+Primary Key: debt_profile_id
+Foreign Key: loan_id
+
+Variables included:
+ -debt_profile_id (PK)
+ -loan_id (FK)
+ -dti
+ -revol_bal
+ -revol_util
+
+Loan.loan_id ← Borrower.loan_id
+Loan.loan_id ← Credit_History.loan_id
+Loan.loan_id ← Debt_Profile.loan_id
