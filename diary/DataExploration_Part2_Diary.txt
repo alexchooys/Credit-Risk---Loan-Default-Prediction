@@ -1,0 +1,117 @@
+DataExploration Part2
+
+What issues have you identified (duplicates, missingness, standardization, noise/outliers, etc.)?
+For each issue: where it appears (table/column), how big it is (counts/percent), and what can it mean.
+
+
+Issue 1: Extensive Missingness in Non-Core Columns
+
+    Where:
+     member_id (100% missing)
+     Hardship-related fields (hardship_reason, hardship_type, etc. >99% missing)
+     next_pymnt_d (~99.8% missing)
+
+    Magnitude:
+     Entire columns or near-entire columns missing
+
+    Meaning:
+     These fields only apply to a small subset of borrowers
+     Not suitable for general default prediction
+     Should be excluded from modeling and DB core tables
+
+Issue 2: Moderate Missingness in Key Predictors
+
+    Where:
+     annual_inc
+     emp_length
+     revol_util
+
+    Magnitude:
+     Non-trivial but far from majority
+
+    Meaning:
+     Missingness may be informative (e.g., unverified or unstable borrowers)
+     Requires explicit handling (imputation or missing indicators)
+
+
+Issue 3: High Cardinality & Unstructured Text
+
+    Where:
+     emp_title
+     desc
+     title
+
+    Magnitude:
+     Thousands of unique values
+     Many rare categories
+
+    Meaning:
+     Not directly usable in structured models
+     Requires NLP, grouping, or exclusion
+
+Issue 4: Outliers & Skewness
+
+    Where:
+     annual_inc
+     dti
+     revol_bal
+
+    Magnitude:
+     Small proportion of extreme values
+
+    Meaning:
+     Can distort linear models
+     Often caused by self-reported data or data entry quirks
+
+Issue 5: Multicollinearity
+
+    Where:
+     fico_range_low vs fico_range_high
+     grade, sub_grade, int_rate
+
+    Magnitude:
+     Structural and systematic
+
+    Meaning:   
+     Redundant information
+     Affects interpretability and coefficient stability
+
+Issue 6: Duplicate / Identifier Noise
+
+    Where:
+     id and loan_id-like fields
+     member_id (entirely missing)
+
+    Magnitude:
+     Structural
+
+    Meaning:
+     IDs should not be used as predictors
+     Need to clearly define primary keys
+
+
+What questions would you ask your stakeholders to resolve these issues in the future?
+
+    About Target Definition
+     Which loan outcomes are officially considered “default” for risk reporting?
+     Should serious delinquencies be modeled separately from final defaults?
+
+    About Missing Data
+     Why are income and employment missing for some borrowers?
+     Should missing values be treated as risk signals?
+
+    About Outliers
+     Are income and DTI values capped internally?
+     Are extremely high values audited or verified?
+
+    About Institutional Variables
+     Should internal grades be used for prediction or only for benchmarking?
+     Is the goal to replicate or improve upon current underwriting?
+
+    About Unstructured Data
+     Is job title information standardized internally?
+     Are free-text descriptions used in real underwriting decisions?
+
+    About Fairness & Compliance
+     Is geographic information permitted in decision-making?
+     Are there regulatory constraints on feature usage?
