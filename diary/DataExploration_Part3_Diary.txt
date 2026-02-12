@@ -1,0 +1,180 @@
+DataExploration Part3
+
+
+- Which feature or relationships do you want to explore?
+    A. Credit Score (FICO) vs Default
+    Why this variable?
+     FICO score is the core measure of creditworthiness and is directly used in underwriting decisions. It should have a strong relationship with loan default.
+
+    What did I expect to find?
+     Lower FICO scores → higher default probability
+     A roughly monotonic relationship (default decreases as FICO increases)
+
+    B. Debt-to-Income Ratio (DTI) vs Default
+    Why this variable?
+     DTI measures financial burden. Borrowers with high debt relative to income are more likely to experience repayment difficulties.
+
+    What did I expect?
+     Higher DTI → higher default rates
+     Possibly nonlinear increase at extreme values
+
+    C. Loan Term (36 vs 60 months)
+    Why this variable?
+     Longer repayment periods increase exposure to economic risk and borrower life events.
+
+    What did I expect?
+     60-month loans to have higher default rates than 36-month loans
+
+    D. Interest Rate vs Default
+    Why this variable?
+     Interest rate reflects LendingClub’s internal risk assessment.
+
+    What did I expect?
+     Higher interest rates strongly associated with higher default
+     Possibly strong positive correlation
+
+    E. Annual Income vs Default
+    Why this variable?
+     Income reflects repayment capacity.
+
+    What did I expect?
+     Lower income → higher default
+     Possibly diminishing effect after moderate income levels
+
+    F. Grade / Sub-grade vs Default
+    Why this variable?
+     Institution-generated risk classification.
+
+    What did I expect?
+     Clear separation of default rates across grades
+     Strong ordinal pattern (A lowest risk → G highest risk)
+
+
+- What did the visualizations reveal?
+    * Are relationships linear, nonlinear, weak, or strong?
+    A. FICO vs Default
+     Findings:
+      Strong inverse relationship
+      Borrowers with lower FICO ranges default significantly more
+      Relationship appears nonlinear, especially below ~650
+
+     Interpretation:
+      Clear predictive power
+      Default probability increases sharply at low credit scores
+    
+     Strength: Strong
+
+    B. DTI vs Default
+     Findings:
+      Moderate positive relationship
+      Higher DTI associated with higher default
+      Nonlinear pattern — default rises more steeply at extreme DTI levels
+
+     Strength: Moderate
+
+    C. Loan Term vs Default
+     Findings:
+      60-month loans show noticeably higher default rates
+      Clear group difference between 36 and 60 months
+     
+     Strength: Moderate to strong group effect
+
+    D. Interest Rate vs Default
+     Findings:
+      Very strong positive relationship
+      Higher interest loans default more often
+      Relationship appears nearly monotonic
+
+     Strength: Strong
+
+        ⚠ Important:
+        Interest rate is highly correlated with grade/sub-grade.
+
+    E. Annual Income vs Default
+     Findings:
+      Weak to moderate inverse relationship
+      Strong skew in income distribution
+      Relationship weaker than expected after controlling for FICO
+
+     Strength: Weak to moderate
+
+    F. Grade / Sub-grade vs Default
+     Findings:
+      Extremely clear ordinal separation
+      Default increases steadily from A → G
+    
+     Strength: Very strong
+
+        Potential redundancy: Grade overlaps with interest rate and FICO.
+    
+    * Did you observe clusters or group differences?
+     Yes — several:
+
+     1. Clear term-based clusters
+      36-month loans cluster with lower default
+      60-month loans cluster with higher default
+
+     2. Credit-score risk clusters
+      Low FICO borrowers cluster at high default rates
+      High FICO borrowers cluster at low default
+
+     3. Grade-based segmentation
+      Strong segmentation by risk grade
+     
+     These patterns suggest:
+      Underwriting risk tiers are meaningful
+      Model should capture nonlinear thresholds
+    
+    Are any variables potentially redundant?
+     Yes — strong redundancy detected:
+
+     1. fico_range_low and fico_range_high
+      Nearly perfectly correlated
+      Can combine into average FICO
+
+     2. grade, sub_grade, and int_rate
+      All encode similar risk information
+      Including all may introduce multicollinearity
+
+        Recommendation:
+         Keep either grade OR interest rate for interpretation clarity
+         Or test models with and without th
+
+- What surprised you?
+    Did any relationship contradict your initial hypothesis?
+    Did any feature behave differently than expected?
+     
+     A. Income was less predictive than expected
+     Initial hypothesis:
+      Income would strongly reduce default probability
+
+     Observed:
+      After controlling for FICO and grade, income effect is weaker
+
+     Possible explanation:
+      Credit score already captures financial stability
+      Income is self-reported (noise)
+
+     B. Interest rate was extremely predictive
+     This confirms:
+      LendingClub pricing reflects risk accurately
+      Institutional variables encode significant signal
+
+     But raises modeling question:
+      Are we predicting default independently, or just reproducing existing underwriting?
+
+     C. Some high-income borrowers still defaulted
+     This contradicts the simple assumption:
+     “High income = safe borrower”
+
+     Explanation:
+      High debt burden
+      Long-term loans
+      Risk pricing factors
+
+
+Final Analytical Reflection: 
+-Credit quality variables (FICO, grade, interest rate) are strongest predictors.
+-Debt burden variables (DTI, term) add meaningful signal.
+-Income and employment variables provide weaker incremental value.
+-Some variables are redundant and may require feature selection.
