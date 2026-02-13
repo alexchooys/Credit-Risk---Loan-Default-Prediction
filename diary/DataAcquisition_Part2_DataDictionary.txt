@@ -4,7 +4,45 @@ Data Acquisition Part 2_DataDictionary
 ## Brief description of what each variable represents and other data dictionary attributes
 
 -Target variable
- loan_status: Final status of the loan  (commonly: Fully Paid, Charged Off, Default, Late)
+ loan_status: Final status of the loan  (only using: Fully Paid (Non-default (0)), Charged Off (Default (1)), Default (Default (1)))
+    1. Fully Paid (Treated as Non-Default (1))
+     The borrower has completed all scheduled payments.
+     The loan principal and interest have been fully repaid.
+     This represents a successful loan outcome.
+
+    2. Current
+     The loan is still active and payments are being made on time.
+     The final outcome (default or full repayment) is unknown.
+
+    3. Charged Off (Treated as Default (1))
+     The borrower has failed to make payments for a prolonged period.
+     LendingClub considers the loan unlikely to be collected and writes it off as a loss.
+     Some partial recovery may occur later.
+
+    4. Late (31–120 days)
+     Borrower is behind on payments by 31 to 120 days.
+     High risk of eventual default.
+
+    5. In Grace Period
+     Borrower has missed a payment but is still within a short grace window.
+     Loan may return to current status if payment is made soon.
+
+    6. Late (16–30 days)
+     Borrower is 16 to 30 days overdue on payment.
+     Early stage delinquency.
+
+    7. Does not meet the credit policy. Status: Fully Paid
+     Loan did not meet LendingClub’s internal credit standards at origination.
+     However, borrower ultimately repaid the loan successfully.
+
+    8. Does not meet the credit policy. Status: Charged Off
+     Loan failed LendingClub credit policy but was issued anyway.
+     Eventually defaulted.
+
+    9. Default (Treated as Default (1))
+     Borrower has officially defaulted but the loan has not yet been fully charged off.
+     Very rare in this dataset (only 40 records).
+
 
 -Borrower Demographics & Financial Capacity
  annual_inc: Borrower’s self-reported annual income     (Numeric)
