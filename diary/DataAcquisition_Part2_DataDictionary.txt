@@ -5,7 +5,7 @@ Data Acquisition Part 2_DataDictionary
 
 -Target variable
  loan_status: Final status of the loan  (only using: Fully Paid (Non-default (0)), Charged Off (Default (1)), Default (Default (1)))
-    1. Fully Paid (Treated as Non-Default (1))
+    1. Fully Paid (Treated as Non-Default (0))
      The borrower has completed all scheduled payments.
      The loan principal and interest have been fully repaid.
      This represents a successful loan outcome.
