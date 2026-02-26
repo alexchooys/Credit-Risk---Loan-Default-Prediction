@@ -37,5 +37,5 @@ and installment, which encode LendingClub’s internal risk assessment and may a
 performance. Geographic information such as addr_state may introduce fairness concerns if used for prediction, 
 as it can proxy for socioeconomic or demographic factors. Log transformation and winsorization also affect 
 interpretability, particularly for stakeholders unfamiliar with transformed financial variables. Additionally, 
-since the dataset includes only approved loans, selection bias remains, meaning the model predicts default 
+since the dataset includes only approved loans, selection bias remains, meaning the model predicts default
 among accepted borrowers rather than across the full applicant population.
