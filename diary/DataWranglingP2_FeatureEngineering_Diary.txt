@@ -1,0 +1,13 @@
+DataWranglingP2_FeatureEngineering
+
+1. What features you engineered (or transformed), and why?
+
+
+
+2. What did you remove during feature selection, and what is your justification (relevance/ethics/redundancy)?
+
+
+
+3. Include at least one before vs after summary (value counts, distributions, correlation, or a small snippet).
+
+
