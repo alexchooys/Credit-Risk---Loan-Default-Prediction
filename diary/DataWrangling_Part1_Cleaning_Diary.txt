@@ -1,0 +1,41 @@
+DataWranglingP1_Cleaning_Diary
+
+1. What are the top data problems you decided to fix first, and why these first?
+
+- The first issues I prioritized were inconsistent data types (percent strings, dates, and numeric 
+fields stored as objects), impossible or invalid values (negative DTI, revol_util above 100%), and 
+heavy skew in financial variables such as annual income and loan amount. These problems directly 
+affect model performance because machine learning algorithms require consistent numeric formats and 
+realistic ranges. I also addressed duplicate records and target filtering early to prevent leakage 
+and ensure a clean modeling base. Fixing structural and validity issues first ensures that later 
+transformations like log scaling, winsorizing, and imputation are applied correctly and consistently.
+
+
+2. For each problem: what rule did you apply (drop, impute, normalize, convert, deduplicate) and why?
+- For data type inconsistencies, I converted percent strings to numeric values, parsed dates into 
+datetime format, and extracted numeric values from categorical-like fields such as loan term and 
+employment length. For invalid values, I clipped revolving utilization to the range 0–100 and set 
+negative DTI values to missing before imputation. For skewed financial variables (annual_inc, 
+revol_bal, loan_amnt), I applied a log1p transformation before light winsorization to stabilize 
+variance and improve logistic regression performance. Missing numeric values were handled using 
+median imputation with missingness indicators, while duplicate loan IDs were removed to prevent 
+double-counting observations.
+
+
+3. Include at least one before vs after summary (counts, missingness table, value counts, or a small snippet).
+- Before cleaning, several numeric fields were stored as object types and revol_util contained 4,714 values 
+above 100%, while two DTI values were negative. After conversion and clipping, revol_util values were constrained 
+to a valid range and negative DTI values were set to NaN for proper imputation. The dataset contained 1,348,099 
+rows with zero duplicates after filtering, and overall missingness was reduced to only 0.23%, indicating a 
+structurally clean dataset. Log-transformed annual income now centers around approximately 10.8 (log scale), 
+which corresponds to realistic income levels and reduces skew compared to the raw distribution.
+
+
+4. What risks remain? What choices might affect fairness, bias, or interpretation later?
+- One remaining risk is potential leakage from institutional variables such as grade, sub_grade, int_rate, 
+and installment, which encode LendingClub’s internal risk assessment and may artificially inflate model 
+performance. Geographic information such as addr_state may introduce fairness concerns if used for prediction, 
+as it can proxy for socioeconomic or demographic factors. Log transformation and winsorization also affect 
+interpretability, particularly for stakeholders unfamiliar with transformed financial variables. Additionally, 
+since the dataset includes only approved loans, selection bias remains, meaning the model predicts default 
+among accepted borrowers rather than across the full applicant population.
