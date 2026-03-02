@@ -1,13 +1,26 @@
 DataWranglingP2_FeatureEngineering
 
 1. What features you engineered (or transformed), and why?
-
+- I engineered a set of provenance, numeric, ordinal and derived features so the model sees clean, comparable inputs. 
+I converted percent strings to numeric (e.g., int_rate and revol_util → floats), extracted numeric terms (term → term_months) 
+and converted employment text into emp_length_years. I computed credit-quality signals (fico averaged from fico_range_low/high, 
+credit_age_years from issue_d − earliest_cr_line) and created derived ratios that capture financial stress and affordability (
+revol_to_loan, installment_to_monthly_income, open_to_total_ratio, fico_times_revolutil). I also generated date parts 
+(issue_month, issue_quarter, issue_year) and ordinal encodings for grade/sub_grade so I can treat them numerically while 
+still OHE’ing nominal categories later.
 
 
 2. What did you remove during feature selection, and what is your justification (relevance/ethics/redundancy)?
-
+I removed raw, redundant, or leakage-prone columns: raw fico_range_low/fico_range_high are dropped after computing fico to 
+avoid duplication, and I drop loan_status and loan_id from modeling inputs to prevent leakage/ID leakage. For application-time 
+models I intentionally dropped underwriting/pricing signals (grade, sub_grade, int_rate, installment / or installment_to_monthly_income) 
+so the model represents only borrower-side fundamental information (this reduces the risk of using post-origination pricing that 
+would not be available at decision time). Ethically sensitive fields such as addr_state are retained for now but flagged for review — 
+I note they can encode geographic bias and should be removed or aggregated later if fairness checks indicate disparate impact. 
+Redundant or extreme columns are winsorized and then imputed, and I plan to run correlation / feature-importance filtering (L1 or tree-based) 
+before finalizing the deployed feature set.
 
 
 3. Include at least one before vs after summary (value counts, distributions, correlation, or a small snippet).
-
+I included in the Diary/ file.
 
