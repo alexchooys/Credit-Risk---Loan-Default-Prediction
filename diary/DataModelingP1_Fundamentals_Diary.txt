@@ -1,0 +1,14 @@
+DataModelingP1_Fundamentals
+
+1. Which model(s) did you choose to try first, and why?
+Explain your reasoning in terms of the problem type (regression vs classification), interpretability, complexity, and data size.
+
+
+
+2. What assumptions does your model make about the data?
+
+
+
+3. What split will you decide for your train/validation/test? whay?
+
+
