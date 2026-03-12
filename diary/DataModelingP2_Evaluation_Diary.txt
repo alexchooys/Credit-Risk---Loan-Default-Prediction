@@ -1,0 +1,18 @@
+DataModelingP2_Evaluation_Diary
+
+Analyze which model performs best and why.
+Interpret performance metrics in the context of your problem.
+Investigate which features are most influential in the model.
+
+
+1. What evaluation metrics did you choose and why are they appropriate for your problem?
+
+
+
+2. How does your model compare to the baseline?
+
+
+
+3. What does feature importance suggest about the patterns your model is using?
+
+
