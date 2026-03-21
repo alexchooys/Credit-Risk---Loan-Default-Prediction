@@ -2,13 +2,24 @@ DataModelingP1_Fundamentals
 
 1. Which model(s) did you choose to try first, and why?
 Explain your reasoning in terms of the problem type (regression vs classification), interpretability, complexity, and data size.
-
+I first chose Logistic Regression and XGBoost because this is a binary classification problem (predicting default = 0/1). Logistic 
+Regression is a good baseline since it is simple, interpretable, and helps understand feature relationships, while XGBoost is a more 
+complex model that can capture non-linear patterns and interactions. Given the large dataset, XGBoost is appropriate because it performs 
+well with high-dimensional data and does not require strict assumptions. Using both allows me to compare a simple, explainable model 
+with a high-performance model.
 
 
 2. What assumptions does your model make about the data?
-
+Logistic Regression assumes a linear relationship between the features and the log-odds of the target, as well as independence 
+between features and no strong multicollinearity. It also assumes that the data is properly scaled and that outliers are handled, 
+which is why preprocessing steps like log transformation and winsorization are applied. XGBoost, on the other hand, makes fewer 
+assumptions about the data and can handle non-linear relationships and interactions automatically. However, it still assumes that 
+the training data is representative and that missing values are handled consistently.
 
 
 3. What split will you decide for your train/validation/test? whay?
-
+The dataset is a time-based splitting using the loan issue date, with training data from earlier years, validation from the next year, 
+and testing from the most recent year. This approach avoids data leakage because future information is not used to predict past outcomes. 
+It also better simulates a real-world scenario where models are trained on historical data and applied to future loans. A time-based split 
+is more appropriate than a random split for this type of financial prediction problem.
 
