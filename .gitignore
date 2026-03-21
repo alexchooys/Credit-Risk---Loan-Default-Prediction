@@ -1,3 +1,5 @@
 analysis_dataset.csv
 *.csv
 data/
+*.joblib
+artifacts/
