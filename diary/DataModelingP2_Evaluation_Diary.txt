@@ -6,13 +6,27 @@ Investigate which features are most influential in the model.
 
 
 1. What evaluation metrics did you choose and why are they appropriate for your problem?
-
+I used ROC-AUC, PR-AUC, Brier score, and F1-score because this is an imbalanced binary classification 
+problem where predicting defaults (the minority class) is critical. ROC-AUC evaluates overall ranking 
+ability, while PR-AUC focuses more on performance for the minority class, which is more meaningful here. 
+The Brier score measures how well-calibrated the predicted probabilities are, and F1-score balances precision 
+and recall when choosing a classification threshold. Together, these metrics provide a comprehensive view of 
+both prediction quality and probability reliability.
 
 
 2. How does your model compare to the baseline?
-
+Compared to the baseline Logistic Regression model, both XGBoost models perform better across most metrics, 
+especially PR-AUC and ROC-AUC. The XGB (Full) model performs best overall, benefiting from additional features 
+like grade and sub_grade and its ability to capture non-linear relationships. Logistic Regression, while more 
+interpretable, shows lower predictive power but slightly more stable probability calibration. This confirms that 
+more complex models improve performance at the cost of interpretability.
 
 
 3. What does feature importance suggest about the patterns your model is using?
-
+Feature importance from the XGBoost model suggests that variables related to credit risk, such as FICO score, 
+interest rate, and credit history (credit_age_years), are highly influential in predicting defaults. Engineered 
+features like debt-to-income ratio and revolving utilization also contribute significantly, indicating that both 
+borrower financial behavior and credit capacity are key signals. Additionally, categorical features like loan purpose 
+and home ownership help capture borrower profiles. Overall, the model is learning meaningful financial patterns consistent 
+with real-world lending risk.
 
