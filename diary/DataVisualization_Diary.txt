@@ -1,0 +1,18 @@
+DataVisualization_Diary
+
+What is the main story or message your visualizations or article communicate?
+
+- The visualizations show that machine learning models, especially XGBoost, can effectively 
+rank borrowers by default risk, even in an imbalanced dataset. The results highlight that a 
+small portion of high-risk borrowers accounts for a large share of defaults, making risk segmentation 
+highly valuable for decision-making. Overall, the dashboard demonstrates how model performance, 
+threshold selection, and feature patterns work together to support better lending strategies.
+
+
+Sketch of you dashboard or outline of your article sections
+
+- The dashboard is organized into several sections: a model leaderboard comparing performance metrics, 
+a threshold explorer showing classification trade-offs, a ROC/PR/calibration panel evaluating model quality, 
+a decile analysis highlighting risk segmentation, and a single-loan explorer for individual predictions. 
+Each section builds on the previous one, moving from overall model comparison to detailed insights and practical
+decision support. 
