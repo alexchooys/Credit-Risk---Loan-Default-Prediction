@@ -3,3 +3,4 @@ analysis_dataset.csv
 data/
 *.joblib
 artifacts/
+.DS_Store
