@@ -1,0 +1,10 @@
+ProjectIteration_Diary
+
+What feedback did your team receive during the iteration session?
+- Improving my results for each model and change my advanced visualization dashboard to user input interaction. 
+
+What are the most important next steps for improving your project?
+- Changing my dashboard from presenting style to user input interaction for prediction.
+
+What part of your project still needs the most work?
+- the F1 score for imbalance datasets
