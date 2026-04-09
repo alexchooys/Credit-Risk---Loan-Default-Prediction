@@ -1,0 +1,16 @@
+ModelDeployment_Diary
+
+What is the difference between joblib and pickle?
+- Pickle is Python’s built-in serialization library, while joblib is optimized 
+for efficiently saving and loading large objects, especially those containing NumPy arrays. 
+Joblib is typically faster and more memory-efficient for machine learning models and datasets.
+
+Which one did youruse, and why?
+- I used joblib because my project involves large datasets and trained models, which benefit 
+from faster loading and compression. It is also commonly used with scikit-learn, which makes it a more practical choice for this workflow.
+
+
+Was your model reproducible in a different notebook? What did you need to do to make that work?
+- Yes, the model was reproducible in a different notebook after loading the saved artifacts. To make it work, 
+I had to ensure the same file paths, load the saved models and encoders, and handle custom class definitions 
+or avoid loading objects that depend on them.
