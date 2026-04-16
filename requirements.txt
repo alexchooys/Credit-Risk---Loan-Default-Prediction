@@ -1,5 +1,5 @@
 # Core data processing
-numpy==2.0.0
+numpy==1.26.4
 pandas==2.2.2
 
 # Machine learning
@@ -8,6 +8,7 @@ xgboost==2.0.3
 
 # Visualization
 plotly==5.22.0
+matplotlib
 
 # Notebook interactivity
 ipywidgets==8.1.3
@@ -15,6 +16,9 @@ ipywidgets==8.1.3
 # Utilities
 joblib==1.4.2
 
-# Jupyter environment
+# Data access
+kagglehub
+
+# Jupyter environment (optional)
 ipykernel==6.29.4
 ipython==8.24.0
