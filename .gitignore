@@ -1,8 +1,6 @@
 analysis_dataset.csv
-*.csv
 data/
-*.joblib
-artifacts/
+# artifacts/
 .DS_Store
 .venv/
 .ipynb_checkpoints/
