@@ -1,0 +1,16 @@
+numpy==2.4.4
+pandas==3.0.2
+scikit-learn==1.5.0
+scipy==1.17.1
+xgboost==3.2.0
+joblib==1.4.2
+
+plotly==5.20.0
+ipywidgets==8.1.2
+
+matplotlib==3.10.8
+seaborn==0.13.2
+
+jupyter==1.1.1
+ipykernel==7.2.0
+notebook==7.5.5
