@@ -4,4 +4,3 @@ data/
 .DS_Store
 .venv/
 .ipynb_checkpoints/
-artifacts/models/trained_models_bundle.joblib
