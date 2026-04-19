@@ -1,4 +1,4 @@
 *.joblib filter=lfs diff=lfs merge=lfs -text
 *.csv filter=lfs diff=lfs merge=lfs -text
-artifacts/models/* filter=lfs diff=lfs merge=lfs -text
+artifacts/models/model_summary.csv filter=lfs diff=lfs merge=lfs -text
 lending_club_sample_10pct.csv filter=lfs diff=lfs merge=lfs -text
