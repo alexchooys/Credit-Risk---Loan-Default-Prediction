@@ -231,8 +231,6 @@ jupyter nbconvert --to notebook --execute notebooks/data_modeling.ipynb \
 The following files must exist before launching:
 
 ```
-artifacts/cleaning_only/cleaning_pipelines.joblib
-artifacts/cleaning_only/meta.joblib
 artifacts/models/trained_models_bundle.joblib
 ```
 
@@ -252,13 +250,24 @@ Open `notebooks/data_visualization_static.ipynb` and run all cells (`Kernel → 
 
 ### What the tool provides
 
-The user enters applicant details (annual income, FICO score, DTI, loan amount, term, purpose, employment length, home ownership, etc.) and selects a model. The tool outputs:
+The interface is organized into **four input tabs**:
 
-- Predicted probability of default
-- Risk band: Low / Moderate / Elevated / High
-- Threshold-based prediction (likely default vs non-default)
-- Plotly gauge chart visualizing the probability
-- Validation performance metrics for the selected model
+| Tab | Fields |
+|-----|--------|
+| **Borrower/Loan** | Loan amount, term, annual income, employment length, home ownership, income verification, loan purpose, borrower state |
+| **Credit** | FICO range (low/high), earliest credit line, active accounts, total accounts, delinquencies in 2 years, public records |
+| **Debt & Auto Calc** | Revolving balance, monthly debt payments, gross monthly income, revolving credit limit → DTI and revolving utilization are **auto-calculated** |
+| **Full Model** | Interest rate, installment amount, loan grade, sub-grade *(enabled only for XGB Full)* |
+
+> **Note:** Issue date (`issue_d`) is internally fixed to `Jan-2016` and does not require user input.
+
+**Outputs per prediction:**
+- Predicted probability of default (e.g., 14.32%)
+- Risk band: Low (< 5%) / Moderate (5–15%) / Elevated (15–30%) / High (> 30%)
+- Threshold-based verdict: LIKELY DEFAULT or LIKELY NON-DEFAULT
+- Auto-calculated DTI and revolving utilization values used in the prediction
+- Plotly gauge chart with color-coded risk zones and decision threshold marker
+- **Human-in-the-loop disclaimer** showing validation F1, accuracy, recall, and precision at the operating threshold, with a note that predictions are advisory only and must not be used as the sole basis for approval or denial
 
 ---
 
@@ -313,9 +322,13 @@ Schema diagram: `docs/DB Schema.png`
 - All models, encoders, and thresholds saved to `trained_models_bundle.joblib`
 
 ### Stage 4 — Visualization & Deployment
-- Interactive per-loan predictor notebook with ipywidgets and Plotly
-- User inputs applicant details → real-time predicted probability and risk band
-- Model selection available (Logistic, XGB Fundamental, XGB Full)
+- Interactive per-loan default predictor built with `ipywidgets` and Plotly
+- Four-tab input layout: Borrower/Loan, Credit, Debt & Auto Calc, Full Model
+- DTI and revolving utilization auto-calculated from user-provided cash flow inputs
+- Model leaderboard displayed on startup from the embedded summary table
+- Risk output: predicted probability, risk band, gauge chart, and threshold-based verdict
+- Human-in-the-loop disclaimer with live validation metrics (F1, accuracy, recall, precision) at operating threshold
+- Deployed at: https://latte.rc.ufl.edu/engine/gallery/credit-risk-loan-default-prediction/
 
 ---
 
