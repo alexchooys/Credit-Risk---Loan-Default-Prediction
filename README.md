@@ -92,7 +92,7 @@ Credit-Risk-Default-Prediction/
 ├── 10% Loan Dataset/
 │   └── lending_club_sample_10pct.csv           # 10% stratified sample (included in repo)
 │
-└── artifacts/                                  # ⚠️ NOT included in repo — regenerate locally
+└── artifacts/                                  
     ├── cleaning_only/
     │   ├── cleaning_pipelines.joblib            # Fitted sklearn cleaning pipelines
     │   ├── cleaned_outputs.joblib               # Cleaned train/val/test matrices + labels
