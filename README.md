@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Business Imapact](#business-impact)
 - [Final Tool](#final-tool)
 - [Repository Structure](#repository-structure)
 - [Problem Formulation](#problem-formulation)
@@ -28,6 +29,16 @@ This project investigates whether borrower financial and credit information can 
 Loan defaults generate significant financial losses for lenders. By identifying high-risk borrowers early, institutions can improve underwriting decisions, reduce bad debt, and enhance risk management practices.
 
 The project covers the full data science cycle — from problem formulation and data acquisition through wrangling, modeling, evaluation, and an interactive prediction tool — using structured financial and credit variables known at loan origination.
+
+---
+
+## Business Impact
+
+This project provides a practical decision-support tool for identifying high-risk loan applicants before approval. By estimating the probability of default at origination, lenders can better prioritize applications for manual review and reduce exposure to bad debt.
+
+Rather than replacing human judgment, the model is designed to support risk analysts by highlighting borrowers with elevated default risk. For example, institutions could use the model to flag the top 15–25% highest-risk applicants for further scrutiny, improving underwriting efficiency while maintaining approval rates for low-risk borrowers.
+
+The tool is especially valuable in high-volume lending environments, where consistent and data-driven screening can improve both short-term portfolio performance and long-term risk management.
 
 ---
 
@@ -350,6 +361,20 @@ Full metrics from `artifacts/models/model_summary.csv`:
 
 ---
 
+## Key Insights
+
+- **Institutional features dominate predictive power:** Loan grade and interest rate are among the strongest predictors, indicating that lender pricing decisions already encode substantial risk information.
+
+- **Borrower financials alone are less predictive:** Variables such as annual income and employment length provide limited signal compared to credit history and debt-related features.
+
+- **Model tradeoff between performance and independence:** While XGB (Full) achieves the highest ROC-AUC, it relies on lender-assigned features. The Fundamental models offer a more independent assessment of borrower risk without using institutional signals.
+
+- **Imbalanced classification remains challenging:** Low F1 scores across all models reflect the difficulty of identifying relatively rare default events while controlling false positives.
+
+- **Probability estimates are more useful than binary predictions:** The model is most valuable as a ranking and risk-scoring tool rather than a strict approve/deny classifier.
+
+---
+
 ## Diary Documentation
 
 The `diary/` folder documents all stages of the project with technical decisions, tradeoffs, and reflections:
@@ -370,6 +395,31 @@ The `diary/` folder documents all stages of the project with technical decisions
 | `DataVisualization_Diary.txt` | Dashboard story, layout rationale |
 | `ModelDeployment_Diary.txt` | joblib vs pickle decision, reproducibility steps |
 | `ProjectIteration_Diary.txt` | Feedback received, next steps, identified improvements |
+
+---
+## Limitations & Future Work
+
+### Limitations
+
+- **Sample selection bias:** The dataset includes only approved loans, meaning rejected applicants and their outcomes are not observed. This limits the model’s ability to fully represent the applicant population.
+
+- **Self-reported data quality:** Variables such as annual income may contain inaccuracies or overstatements, introducing noise into the model.
+
+- **Limited feature scope:** The dataset does not include macroeconomic factors (e.g., unemployment rate, interest rate environment) that can significantly influence default behavior.
+
+- **Class imbalance:** Default events are relatively rare, making it difficult to achieve high recall without increasing false positives.
+
+- **Potential information leakage in Full model:** Features like loan grade and interest rate may already reflect internal risk assessments, reducing the model’s independence.
+
+---
+
+### Future Work
+
+- Incorporate macroeconomic variables to capture broader economic conditions
+- Apply model explainability techniques (e.g., SHAP values) to improve interpretability
+- Explore advanced imbalance handling methods such as focal loss or resampling techniques
+- Extend the model to include rejected applications (if data becomes available)
+- Deploy as a standalone web application (e.g., Streamlit) for improved accessibility
 
 ---
 
