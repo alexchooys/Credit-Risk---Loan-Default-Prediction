@@ -14,7 +14,9 @@
 - [Database Design](#database-design)
 - [Data Science Cycle Summary](#data-science-cycle-summary)
 - [Model Results](#model-results)
+- [Key Insights](#key-insights)
 - [Diary Documentation](#diary-documentation)
+- [Limitations & Future Work](#limitations--future-work)
 - [Authors](#authors)
 
 ---
