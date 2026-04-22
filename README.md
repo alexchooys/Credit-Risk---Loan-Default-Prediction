@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-- [Business Imapact](#business-impact)
+- [Business Impact](#business-impact)
 - [Final Tool](#final-tool)
 - [Repository Structure](#repository-structure)
 - [Problem Formulation](#problem-formulation)
