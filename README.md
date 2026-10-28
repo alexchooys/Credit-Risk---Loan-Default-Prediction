@@ -23,7 +23,7 @@
 
 ## Project Overview
 
-This project investigates whether borrower financial and credit information can accurately predict loan default outcomes using the publicly available Lending Club dataset.
+This notebook loads the raw Lending Club dataset and performs end-to-end data preparation.
 
 **Central question:**
 > Can we accurately predict whether a loan applicant is likely to default based on financial and credit characteristics?
@@ -32,6 +32,14 @@ Loan defaults generate significant financial losses for lenders. By identifying 
 
 The project covers the full data science cycle — from problem formulation and data acquisition through wrangling, modeling, evaluation, and an interactive prediction tool — using structured financial and credit variables known at loan origination.
 
+It provides:
+- Data cleaning (handling missing values, inconsistent formats, and duplicates)
+- Target variable construction using a fixed prediction horizon
+- Feature engineering based on borrower financial and credit characteristics
+- Separation of fundamental and full feature sets
+- Time-based train, validation, and test splits
+- Export of clean, analysis-ready datasets and preprocessing artifacts for modeling
+  
 ---
 
 ## Business Impact
